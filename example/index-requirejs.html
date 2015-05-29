@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>图片放大镜</title>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<style>
+		img{width:300px;height:300px;margin:10px;}
+		h1{font-size: 18px;}
+		</style>
+	</head>
+	<body class="demo-lazy-load">
+	<br>
+	<br>
+	<br>
+	<br>
+	<h1>始终显示放大镜</h1>
+		<img id="img1" src="a.png" alt="">
+		<p id="info1"></p>
+	<h1>只在点击触摸时显示放大镜</h1>
+		<img id="img2" src="a.png" alt="">
+		<p id="info2"></p>
+		<script type="text/javascript" src="../src/zepto.js"></script>
+		<script type="text/javascript" src="../src/require.js"></script>
+		<script>
+		requirejs.config({
+			//By default load any module IDs from js/lib
+			baseUrl: '../src',
+			paths: {
+				$: 'zepto'
+			}
+		});
+		require(['image-zooming',"$"], function(ImageZooming,$){
+			var lz = new ImageZooming();
+			lz.init({
+				target: $('#img1'),
+				times: 2,
+				always: true,
+				callback: function(a, b, c, d) {
+					$('#info1').html('x: ' + a.x + '    y:' + a.y);
+				}
+			});
+			var lz2 = new ImageZooming();
+			lz2.init({
+				target: $('#img2'),
+				times: 2,
+				always: false,
+				callback: function(a, b, c, d) {
+					$('#info2').html('x: ' + a.x + '    y:' + a.y);
+				}
+			});
+		});
+		</script>
+	</body>
+</html>
