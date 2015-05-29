@@ -36,7 +36,6 @@
 	ImageZooming.prototype = {
 		init: function(settings) {
 			this.settings = $.extend({
-				trigger: '',
 				target: $(),
 				width: 100,
 				height: 100,
@@ -75,26 +74,26 @@
 			});
 
 			//target事件
-			$(this.settings.target).on('touchstart', this.settings.trigger, function(e) {
+			$(this.settings.target).on('touchstart',  function(e) {
 				_this.event['mousedown'].call(this, e, _this);
 			});
-			$(this.settings.target).on('mousedown', this.settings.trigger, function(e) {
+			$(this.settings.target).on('mousedown',  function(e) {
 				_this.event['mousedown'].call(this, e, _this);
 				ismove = true;
 			});
-			$(this.settings.target).on('touchmove', this.settings.trigger, function(e) {
+			$(this.settings.target).on('touchmove',  function(e) {
 				/*var touch = e.changedTouches[0];
 				_this.setPosition.call(_this, touch.pageX, touch.pageY, this);
 				return false;*/
 				return _this.event['mousemove'].call(this, e, _this);
 			});
-			$(this.settings.target).on('mousemove', this.settings.trigger, function(e) {
+			$(this.settings.target).on('mousemove',  function(e) {
 				return ismove && _this.event['mousemove'].call(this, e, _this);
 			});
-			$(this.settings.target).on('touchend', this.settings.trigger, function(e) {
+			$(this.settings.target).on('touchend',  function(e) {
 				return _this.event['mouseup'].call(this, e, _this);
 			});
-			$(this.settings.target).on('mouseup', this.settings.trigger, function(e) {
+			$(this.settings.target).on('mouseup',  function(e) {
 				return _this.event['mouseup'].call(this, e, _this);
 			});
 		},
